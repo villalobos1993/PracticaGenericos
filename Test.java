@@ -19,6 +19,8 @@ public class Test {
 		d.size();
 		d.pop();
 		d.size();
+		d.remove();
+		d.size();
 		System.out.println("String");
 		System.out.println(c.isEmpty());
 		c.size();
@@ -26,7 +28,7 @@ public class Test {
 		c.size();
 		c.clear();
 		c.size();
-		c.contains(c);
+		
 	    
 		 byte opcion=menu();
 		

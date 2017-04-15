@@ -2,8 +2,8 @@ package modelo;
 
 import java.lang.reflect.Array;
 import java.util.Scanner;
+import java.lang.String;
 
-import org.omg.Messaging.SyncScopeHelper;
 
 public class Cola<T> {
 
@@ -16,7 +16,7 @@ public class Cola<T> {
 	public Cola(){
 	
 		this.clases=getClass();
-		this.elementos = (T[]) Array.newInstance(clases, 5);
+		this.elementos = (T[]) Array.newInstance(clases,0);
 		
 	
 	}
@@ -25,17 +25,26 @@ public class Cola<T> {
 	
 
 	//Metodos
+
+	/**
+	 * Metodo Push lo utilizaremos para agrandar el Array a uno mas
+	 */
 	public void  push(){
 	
-		T[] aux =(T[]) Array.newInstance(clases, elementos.length+1);
-		
-		for(int i=0;i<elementos.length;i++){
-			aux[i]=elementos[i];
-		}
-		
-		setElementos(aux,false,true,false);
+		if(elementos==null){
+			T[] aux =(T[]) Array.newInstance(clases,1);
+		}else{
+			T[] aux =(T[]) Array.newInstance(clases, (elementos.length+1));
+			for(int i=0;i<elementos.length;i++){
+				aux[i]=elementos[i];
+		}		
+		setElementos(aux,false,true,false);}
 	}
 	
+	
+	/**
+	 * Metodo remove lo usaremos para borrar el elemento que queramos dentro del array.
+	 */
 	public void remove(){
 		Scanner teclado= new Scanner(System.in);
 		int elemento = 0;
@@ -44,6 +53,7 @@ public class Cola<T> {
 		
 		T[] aux =(T[]) Array.newInstance(clases, elementos.length-1);
 		
+		//validacion
 		do{
 		esCorrecto=true;
 		System.out.println("Cual elemento del array quiere borrar");
@@ -68,10 +78,12 @@ public class Cola<T> {
 			
 		}
 		
-	
-		
 		setElementos(aux,true,false,false);
 	}
+	
+	/**
+	 * Metodo pop lo utilizaremos para borrar el ultimo elemento del array.
+	 */
 	
 	public void pop(){
 		
@@ -86,6 +98,10 @@ public class Cola<T> {
 		
 	}
 	
+	/**
+	 * Metodo clear lo utilizaremos para borrar todo el array completo.
+	 */
+	
 	public void clear(){
 		
 		setElementos(elementos,false,false,true);
@@ -99,24 +115,36 @@ public class Cola<T> {
 		return esta;		
 	}
 	
+	/**
+	 * Metodo isEmpty lo utilizaremos para saber si el Array esta vacio
+	 * 	 * @return
+	 */
 	public boolean isEmpty(){
-		boolean hola = false;
+		boolean vacio = false;
 		for(int i=0;i<elementos.length;i++){
 		if(elementos[i]==null){
-			hola=true;
-			System.out.println("El Array esta vacio.");
+			vacio=true;
+			System.out.println("El Array " + i + " esta vacio.");
 		}}
 	
-		return hola;
+		return vacio;
 	}
 	
-	public int size(){
+	/**
+	 * Metodo size lo utilizaremos para saber cuantos elementos hay dentro de nuestro array.
+	 * @return
+	 */
+	public int  size(){
 		System.out.println(elementos.length);
-		return 0;
+		return elementos.length;
 	}
 
-
-//getter and setter
+	
+	
+ /**
+  * GETTER AND SETTERS
+  * @return
+  */
 
 	public T[] getElementos() {
 		return elementos;
@@ -138,7 +166,7 @@ public class Cola<T> {
 		}
 		
 		if(remove==false && push ==true && clear ==false){
-			this.elementos =(T[]) Array.newInstance(clases, elementos.length+1);
+			this.elementos =(T[]) Array.newInstance(clases, aux.length);
 			
 			for(int i=0;i<elementos.length-1;i++){
 				
@@ -164,8 +192,13 @@ public class Cola<T> {
 
 
 	public void setClases(Class<?> clases) {
-		this.clases = clases;
+		this.clases = getClass();
 	}
+
+
+
+
+
 
 
 

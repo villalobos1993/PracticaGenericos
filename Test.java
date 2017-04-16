@@ -5,43 +5,57 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import modelo.Cola;
+import modelo.Gato;
 public class Test {
-public static Cola c;
+
 	
 	public static void main(String[] args) {
 		boolean salir=false;
+		boolean vacio;	
+		boolean existe;
+		Cola<Gato> Cola=new Cola<Gato>();
+		Gato g1=new Gato("Felix","siames");
+		Gato g2=new Gato("gatito","1");
+		Gato g3=new Gato("felino","2");
+		Gato g4=new Gato("negrito","3");
+		Gato g5=new Gato("doraemon","4");
 		
-		c=new Cola<String>();
-		Cola<String> s=new Cola<String>();
 		 byte opcion=0;
 		do{ 
 			 opcion = menu();
 			if (opcion == 1) {
-			    c.push();
+			    Cola.push(g1);
+			    Cola.push(g2);
+			    Cola.push(g3);
+			    Cola.push(g4);
+			    Cola.push(g5);
 			}
 			if (opcion == 2) {
-               c.remove();
+				Cola.remove();
 			}
 			if (opcion == 3) {
-               c.pop();
+				
+				Cola.pop();
 			}
 			if (opcion == 4) {
-                c.clear(); 
+				Cola.clear(); 
 			}
 			if (opcion == 5) {
-                c.isEmpty();
+				vacio=Cola.isEmpty();
+				System.out.println(vacio);
 			}
 			if (opcion == 6) {
-                 c.size();
+				Cola.size();
 			}
 			if(opcion == 7){
-				 c.contains();
+				existe=Cola.contains(g1);
+				System.out.println(existe);
 			 }
 			if(opcion==8){
 				salir=true;
 			}
-
-	 
+            
+		
 		}while(!salir);
 	}
 
